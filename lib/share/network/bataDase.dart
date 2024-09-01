@@ -2,7 +2,7 @@ import 'package:sqflite/sqflite.dart';
 
 class UserDataBase {
   late Database db;
-  List<Map> users = [];
+  List<Map> users =[];
 
   CreateDBTable() async {
     db = await openDatabase(
@@ -27,8 +27,8 @@ class UserDataBase {
   }) {
     db.transaction((txn) async {
       await txn
-          .rawInsert("INSERT INTO user(name, email, password) "
-              "values('$name', '$email', '$pass')")
+          .rawInsert("INSERT INTO user(name, password, email) "
+          "values('$name', '$email', '$pass')")
           .then((V) {
         return print("insetuser row $V");
       });
@@ -50,7 +50,7 @@ class UserDataBase {
     db.rawUpdate(
         'UPDATE user SET name = ? , email = ?, password = ?  WHERE id = ?',
         [name, email, pass, id] //هدخله القيم على طول بدل ما ادي القيم كل مره
-        ).then((V) {
+    ).then((V) {
       return print("update user row $V");
     });
   }

@@ -29,7 +29,7 @@ class _userState extends State<user> {
         title: Text(
           "users Data ",
           style:
-              TextStyle(fontFamily: "font1", fontSize: 50, color: Colors.white),
+          TextStyle(fontFamily: "font1", fontSize: 50, color: Colors.white),
         ),
         backgroundColor: Colors.blueGrey,
       ),
@@ -42,72 +42,72 @@ class _userState extends State<user> {
             children: [
               u.users.isEmpty
                   ? Card(
-                      child: ListTile(
-                        title: Text("no users now"),
-                        leading: CircleAvatar(
-                          child: Text("?"),
-                        ),
-                      ),
-                    )
+                child: ListTile(
+                  title: Text("no users now"),
+                  leading: CircleAvatar(
+                    child: Text("?"),
+                  ),
+                ),
+              )
                   : Container(
-                      height: 200,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            for (int i = 0; i < u.users.length; i++)
-                              Card(
-                                child: ListTile(
-                                  title: Text(u.users[i]["name"]),
-                                  leading: CircleAvatar(
-                                    child: Text(u.users[i]["id"].toString()),
+                height: 200,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      for (int i = 0; i < u.users.length; i++)
+                        Card(
+                          child: ListTile(
+                            title: Text(u.users[i]["name"]),
+                            leading: CircleAvatar(
+                              child: Text(u.users[i]["id"].toString()),
+                            ),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              UserDetelse(u.users[i]),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  icon: Icon(
+                                    Icons.edit,
+                                    color: Colors.teal,
+                                    size: 30,
                                   ),
-                                  trailing: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      IconButton(
-                                        onPressed: () {
-                                          {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    UserDetelse(u.users[i]),
-                                              ),
-                                            );
-                                          }
-                                        },
-                                        icon: Icon(
-                                          Icons.edit,
-                                          color: Colors.teal,
-                                          size: 30,
-                                        ),
-                                      ), //edit
-                                      IconButton(
-                                        onPressed: () async {
-                                          if (u.db != null) {
-                                            int userId = u.users[i]["id"];
-                                            print(userId);
-                                            await u.deleteUser(id: userId);
-                                            u.users = await u.showUsers();
-                                            setState(() {});
-                                          } else {
-                                            print(
-                                                "Database not initialized yet.");
-                                          }
-                                        },
-                                        icon: Icon(
-                                          Icons.delete_forever,
-                                          color: Colors.red,
-                                          size: 30,
-                                        ),
-                                      ),
-                                    ],
+                                ), //edit
+                                IconButton(
+                                  onPressed: () async {
+                                    if (u.db != null) {
+                                      int userId = u.users[i]["id"];
+                                      print(userId);
+                                      await u.deleteUser(id: userId);
+                                      u.users = await u.showUsers();
+                                      setState(() {});
+                                    } else {
+                                      print(
+                                          "Database not initialized yet.");
+                                    }
+                                  },
+                                  icon: Icon(
+                                    Icons.delete_forever,
+                                    color: Colors.red,
+                                    size: 30,
                                   ),
                                 ),
-                              ),
-                          ],
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
+                    ],
+                  ),
+                ),
+              ),
               const Divider(
                 thickness: 5,
                 color: Colors.blueGrey,
@@ -125,8 +125,8 @@ class _userState extends State<user> {
                 controller: nameController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                )),
+                      borderRadius: BorderRadius.circular(20),
+                    )),
               ),
               const SizedBox(
                 height: 20,
@@ -143,8 +143,8 @@ class _userState extends State<user> {
                 controller: emailController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                )),
+                      borderRadius: BorderRadius.circular(20),
+                    )),
               ),
               const SizedBox(
                 height: 20,
