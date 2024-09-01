@@ -4,6 +4,8 @@ import 'package:sqllitte/layout/userDetelse.dart';
 import '../share/network/bataDase.dart';
 
 class user extends StatefulWidget {
+  static const String routeName = 'User Detelse Screen';
+
   @override
   State<user> createState() => _userState();
 }
@@ -15,10 +17,15 @@ class _userState extends State<user> {
   var passController = TextEditingController();
   bool read = false;
 
+  Future<void> loadData() async {
+    await u.CreateDBTable();
+    u.users = await u.showUsers();
+    setState(() {});
+  }
   @override
   void initState() {
     super.initState();
-    u.CreateDBTable();
+    loadData();
   }
 
   @override
@@ -66,14 +73,12 @@ class _userState extends State<user> {
                                     children: [
                                       IconButton(
                                         onPressed: () {
-                                          {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    UserDetelse(u.users[i]),
-                                              ),
-                                            );
-                                          }
+                                          Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UserDetelse(u.users[i]),
+                                            ),
+                                          );
                                         },
                                         icon: Icon(
                                           Icons.edit,
@@ -222,23 +227,6 @@ class _userState extends State<user> {
                         );
                       });
                     }), //insert
-                /*
-                    // MaterialButton(
-                    //     minWidth: 300,
-                    //     child: Text(
-                    //       "update",
-                    //       style: TextStyle(fontSize: 30, color: Colors.white),
-                    //     ),
-                    //     color: Colors.teal,
-                    //     onPressed: () {
-                    //       u.updateUser(
-                    //           name: t1Controller.text,
-                    //           email: t2Controller.text,
-                    //           pass: t3Controller.text,
-                    //           id: 1);
-                    //     }),
-                    //update
-                    */
               ),
             ],
           ),
