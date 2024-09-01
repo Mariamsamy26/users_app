@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqllitte/layout/userDetelse.dart';
 
-import '../network/bataDase.dart';
+import '../share/network/bataDase.dart';
 
 class user extends StatefulWidget {
   @override
@@ -10,9 +10,9 @@ class user extends StatefulWidget {
 
 class _userState extends State<user> {
   UserDataBase u = UserDataBase();
-  var t1Controller = TextEditingController();
-  var t2Controller = TextEditingController();
-  var t3Controller = TextEditingController();
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+  var passController = TextEditingController();
   bool read = false;
 
   @override
@@ -122,7 +122,7 @@ class _userState extends State<user> {
               ),
               TextFormField(
                 keyboardType: TextInputType.name,
-                controller: t1Controller,
+                controller: nameController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -140,7 +140,7 @@ class _userState extends State<user> {
               ),
               TextFormField(
                 keyboardType: TextInputType.name,
-                controller: t2Controller,
+                controller: emailController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -159,7 +159,7 @@ class _userState extends State<user> {
               TextFormField(
                 obscureText: read ? false : true,
                 keyboardType: TextInputType.name,
-                controller: t3Controller,
+                controller: passController,
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(left: 12),
                     suffix: IconButton(
@@ -170,11 +170,12 @@ class _userState extends State<user> {
                       },
                       icon: Icon(
                         read
-                            ? Icons.hide_source_outlined
-                            : Icons.remove_red_eye_outlined,
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
                       ),
                     ),
                     border: OutlineInputBorder(
+                      //borderSide: BorderSide.strokeAlignOutside.,
                       borderRadius: BorderRadius.circular(15),
                     )),
               ),
@@ -192,12 +193,12 @@ class _userState extends State<user> {
                     color: Colors.lightGreen,
                     onPressed: () async {
                       u.insetuser(
-                          name: t1Controller.text,
-                          email: t2Controller.text,
-                          pass: t3Controller.text);
-                      t1Controller.clear();
-                      t2Controller.clear();
-                      t3Controller.clear();
+                          name: nameController.text,
+                          email: emailController.text,
+                          pass: passController.text);
+                      nameController.clear();
+                      emailController.clear();
+                      passController.clear();
                       await u.showUsers().then((value) {
                         u.users = value;
                         setState(() {});

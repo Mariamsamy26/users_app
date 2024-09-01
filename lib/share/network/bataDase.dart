@@ -2,7 +2,7 @@ import 'package:sqflite/sqflite.dart';
 
 class UserDataBase {
   late Database db;
-   List<Map> users =[];
+  List<Map> users = [];
 
   CreateDBTable() async {
     db = await openDatabase(
@@ -27,7 +27,7 @@ class UserDataBase {
   }) {
     db.transaction((txn) async {
       await txn
-          .rawInsert("INSERT INTO user(name, password, email) "
+          .rawInsert("INSERT INTO user(name, email, password) "
               "values('$name', '$email', '$pass')")
           .then((V) {
         return print("insetuser row $V");
