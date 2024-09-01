@@ -85,7 +85,7 @@ class _UserDetelseState extends State<UserDetelse> {
                 labelText: "email",
                 initialValue: widget.user['email'],
                 onPressed: (newData) => emailU = newData,
-                lengthLimitFormatter: LengthLimitingTextInputFormatter(10),
+                lengthLimitFormatter: LengthLimitingTextInputFormatter(80),
                 numericFilterFormatter:
                     FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
                 validator: (newData) {
@@ -97,20 +97,20 @@ class _UserDetelseState extends State<UserDetelse> {
               ),
               const SizedBox(height: 20),
 
-              const Text(
-                "password",
-                style: TextStyle(
-                    fontFamily: "font1", fontSize: 30, color: Colors.blueGrey),
-              ),
               TextFormField(
                 obscureText: read ? false : true,
                 keyboardType: TextInputType.name,
                 controller: passController,
                 decoration: InputDecoration(
+
+                  label: Text(
+                    "password",
+                    style: TextStyle(
+                        fontFamily: "font1", fontSize: 30, color: Colors.blueGrey),
+                  ),
                     contentPadding: EdgeInsets.only(left: 12),
                     suffix: IconButton(
                       onPressed: () {
-                        emailU = passController.text;
                         setState(() {
                           read = !read;
                         });
@@ -124,6 +124,9 @@ class _UserDetelseState extends State<UserDetelse> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
                     )),
+                onChanged: (newData) {
+                  passU = newData;
+                },
               ),
 
               SizedBox(
