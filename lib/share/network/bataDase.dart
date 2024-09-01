@@ -2,7 +2,7 @@ import 'package:sqflite/sqflite.dart';
 
 class UserDataBase {
   late Database db;
-   List<Map> users=[] ;
+  List<Map> users =[];
 
   CreateDBTable() async {
     db = await openDatabase(
