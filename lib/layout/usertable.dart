@@ -64,7 +64,7 @@ class _userState extends State<user> {
                             for (int i = 0; i < u.users.length; i++)
                               Card(
                                 child: ListTile(
-                                  title: Text(u.users[i]["name"]),
+                                  title: Text(u.users[i]["name"],style: TextStyle(fontSize: 20),),
                                   leading: CircleAvatar(
                                     child: Text(u.users[i]["id"].toString()),
                                   ),
