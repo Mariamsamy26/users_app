@@ -87,7 +87,7 @@ class _UserDetelseState extends State<UserDetelse> {
                 onPressed: (newData) => emailU = newData,
                 lengthLimitFormatter: LengthLimitingTextInputFormatter(80),
                 numericFilterFormatter:
-                    FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
+                    FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9@.]')),
                 validator: (newData) {
                   if (newData?.isEmpty ?? false) {
                     return "Please Enter Your Name";
@@ -173,8 +173,7 @@ class _UserDetelseState extends State<UserDetelse> {
                           );
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  user(),
+                              builder: (context) => user(),
                             ),
                           );
 
